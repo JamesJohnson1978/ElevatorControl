@@ -1,0 +1,66 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>ElevatorControl</name>
+    </assembly>
+    <members>
+        <member name="T:ElevatorControl.Controllers.ElevatorController">
+            <summary>
+            API Endpoints to manipulate the Elevator
+            </summary>
+        </member>
+        <member name="M:ElevatorControl.Controllers.ElevatorController.#ctor(ElevatorControl.IState)">
+            <summary>
+            Elevator controller to manage state
+            </summary>
+            <param name="state">State for the elevator</param>
+        </member>
+        <member name="M:ElevatorControl.Controllers.ElevatorController.RequestFloor(System.Int32)">
+            <summary>
+            Requests the elevator move to the specified floor
+            </summary>
+            <param name="id">Floor number the elevator should arrive at</param>
+            <returns></returns>
+            <response code="200">Success</response>
+        </member>
+        <member name="M:ElevatorControl.Controllers.ElevatorController.GetFloors">
+            <summary>
+            Retrieves the current floors the elevator has been requested to service
+            </summary>
+            <returns>A list of current floors the elevator has been requested to service</returns>
+        </member>
+        <member name="M:ElevatorControl.Controllers.ElevatorController.NextFloor">
+            <summary>
+            Obtains and removes the next floor from the elevators work queue
+            </summary>
+            <remarks>Removes this floor from the existing work queue</remarks>
+            <returns>The next floor in the work queue</returns>
+            <response code="200">Success</response>
+            <response code="204">No more work in the elevators queue</response>
+        </member>
+        <member name="T:ElevatorControl.State">
+            <summary>
+            State class for an Elevator
+            </summary>
+        </member>
+        <member name="M:ElevatorControl.State.GetWorkQueue">
+            <summary>
+            Retrieves the queue of floors the elevator is servicing
+            </summary>
+            <returns>List of floors the elevator is servicing</returns>
+        </member>
+        <member name="M:ElevatorControl.State.AddFloor(ElevatorControl.Floor)">
+            <summary>
+            Adds a floor for the elevator to move to
+            </summary>
+            <param name="floor">Floor to move to</param>
+        </member>
+        <member name="M:ElevatorControl.State.NextFloor">
+            <summary>
+            Retrieves the next floor for the elevator to move to
+            </summary>
+            <remarks>Removes the next floor from the work queue</remarks>
+            <returns>The next floor in the queue</returns>
+        </member>
+    </members>
+</doc>
