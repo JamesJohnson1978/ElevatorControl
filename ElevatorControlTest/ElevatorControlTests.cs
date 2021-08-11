@@ -58,7 +58,7 @@ namespace ElevatorControlTest
             ElevatorController ec = new ElevatorController(state);
             IActionResult result = ec.NextFloor();
             HttpStatusCode status = (HttpStatusCode)result.GetType().GetProperty("StatusCode").GetValue(result, null);
-            Assert.Equals(status, HttpStatusCode.OK);
+            Assert.Equals(status, HttpStatusCode.NoContent);
         }
     }
 }
