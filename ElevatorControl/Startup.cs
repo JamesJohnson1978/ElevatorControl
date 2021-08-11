@@ -10,16 +10,29 @@ using System.Reflection;
 
 namespace ElevatorControl
 {
+    /// <summary>
+    /// The ElevatorControl startup scaffoleded code
+    /// </summary>
     public class Startup
     {
+        /// <summary>
+        /// Startup Constructor
+        /// </summary>
+        /// <param name="configuration">application configuration</param>
         public Startup(IConfiguration configuration)
         {
             Configuration = configuration;
         }
 
+        /// <summary>
+        /// Retrieves the IConfiguration for this instance
+        /// </summary>
         public IConfiguration Configuration { get; }
 
-        // This method gets called by the runtime. Use this method to add services to the container.
+        /// <summary>
+        /// Configures services
+        /// </summary>
+        /// <param name="services">A collection of services</param>
         public void ConfigureServices(IServiceCollection services)
         {
             var xmlFile = $"{Assembly.GetExecutingAssembly().GetName().Name}.xml";
@@ -35,7 +48,11 @@ namespace ElevatorControl
 
         }
 
-        // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
+        /// <summary>
+        /// Configures this instance, and setups middleware
+        /// </summary>
+        /// <param name="app">The application builder</param>
+        /// <param name="env">The environment</param>
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
         {
             if (env.IsDevelopment())

@@ -24,10 +24,10 @@ namespace ElevatorControl.Controllers
         /// <summary>
         /// Requests the elevator move to the specified floor
         /// </summary>
-        /// <param name="id">Floor number the elevator should arrive at</param>
+        /// <param name="id">Floor number elevator should move to</param>
         /// <returns></returns>
         /// <response code="200">Success</response>
-        [HttpPut("{id}")]
+        [HttpPost("{id}")]
         public IActionResult RequestFloor(int id)
         {
             Floor floor = new Floor() { Number = id };
@@ -39,7 +39,7 @@ namespace ElevatorControl.Controllers
         /// Retrieves the current floors the elevator has been requested to service
         /// </summary>
         /// <returns>A list of current floors the elevator has been requested to service</returns>
-        [HttpGet("")]
+        [HttpGet("floors")]
         public IActionResult GetFloors()
         {
             return Ok(_state.GetWorkQueue());
@@ -48,11 +48,10 @@ namespace ElevatorControl.Controllers
         /// <summary>
         /// Obtains and removes the next floor from the elevators work queue
         /// </summary>
-        /// <remarks>Removes this floor from the existing work queue</remarks>
         /// <returns>The next floor in the work queue</returns>
         /// <response code="200">Success</response>
-        /// <response code="204">No more work in the elevators queue</response>
-        [HttpDelete("")]
+        /// <response code="204">No more floors to service</response>
+        [HttpGet("nextfloor")]
         public IActionResult NextFloor()
         {
             var nextFloor = _state.NextFloor();

@@ -19,7 +19,7 @@
             <summary>
             Requests the elevator move to the specified floor
             </summary>
-            <param name="id">Floor number the elevator should arrive at</param>
+            <param name="id">Floor number elevator should move to</param>
             <returns></returns>
             <response code="200">Success</response>
         </member>
@@ -33,10 +33,90 @@
             <summary>
             Obtains and removes the next floor from the elevators work queue
             </summary>
-            <remarks>Removes this floor from the existing work queue</remarks>
             <returns>The next floor in the work queue</returns>
             <response code="200">Success</response>
-            <response code="204">No more work in the elevators queue</response>
+            <response code="204">No more floors to service</response>
+        </member>
+        <member name="T:ElevatorControl.Floor">
+            <summary>
+            Describes a floor
+            </summary>
+        </member>
+        <member name="P:ElevatorControl.Floor.Number">
+            <summary>
+            The floor number
+            </summary>
+        </member>
+        <member name="T:ElevatorControl.IState">
+            <summary>
+            IState interface describes an interface for state management of 
+            and elevator
+            </summary>
+        </member>
+        <member name="M:ElevatorControl.IState.GetWorkQueue">
+            <summary>
+            Gets the current work queue
+            </summary>
+            <returns>IEnumerable of Floors the elevator is servicing</returns>
+        </member>
+        <member name="M:ElevatorControl.IState.AddFloor(ElevatorControl.Floor)">
+            <summary>
+            Adds a floor to the elevators work queue
+            </summary>
+            <param name="floor">the floor to add</param>
+        </member>
+        <member name="M:ElevatorControl.IState.NextFloor">
+            <summary>
+            Retrieves the next floor from the elevators work queue
+            </summary>
+            <returns>The next floor the elevator should move to</returns>
+        </member>
+        <member name="T:ElevatorControl.Program">
+            <summary>
+            The ElevatorControl application
+            </summary>
+        </member>
+        <member name="M:ElevatorControl.Program.Main(System.String[])">
+            <summary>
+            ElevatorControl Application Entrypoint
+            </summary>
+            <param name="args"></param>
+        </member>
+        <member name="M:ElevatorControl.Program.CreateHostBuilder(System.String[])">
+            <summary>
+            Creates a host builder
+            </summary>
+            <param name="args">arguments passed to run</param>
+            <returns>An IHostBuilder</returns>
+        </member>
+        <member name="T:ElevatorControl.Startup">
+            <summary>
+            The ElevatorControl startup scaffoleded code
+            </summary>
+        </member>
+        <member name="M:ElevatorControl.Startup.#ctor(Microsoft.Extensions.Configuration.IConfiguration)">
+            <summary>
+            Startup Constructor
+            </summary>
+            <param name="configuration">application configuration</param>
+        </member>
+        <member name="P:ElevatorControl.Startup.Configuration">
+            <summary>
+            Retrieves the IConfiguration for this instance
+            </summary>
+        </member>
+        <member name="M:ElevatorControl.Startup.ConfigureServices(Microsoft.Extensions.DependencyInjection.IServiceCollection)">
+            <summary>
+            Configures services
+            </summary>
+            <param name="services">A collection of services</param>
+        </member>
+        <member name="M:ElevatorControl.Startup.Configure(Microsoft.AspNetCore.Builder.IApplicationBuilder,Microsoft.AspNetCore.Hosting.IWebHostEnvironment)">
+            <summary>
+            Configures this instance, and setups middleware
+            </summary>
+            <param name="app">The application builder</param>
+            <param name="env">The environment</param>
         </member>
         <member name="T:ElevatorControl.State">
             <summary>
